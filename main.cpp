@@ -71,7 +71,6 @@ void test_SqIntMatrix(std::ifstream& file){
     std::cout << "B.array = \n";    // Prints B after row swapping to std::cout.
     B.display_matrix();
     std::cout << "\n";
-
     
     std::cout << "================================= QUESTION 6 =================================\n";
     std::cout << "------------ SWAPPING COLUMNS OF A ------------\n";

@@ -15,6 +15,7 @@ Lab #           = 8
 #include <string>   // Implements the std::string class.
 #include <vector>   // Implements the std::vector class.
 #include <tuple>    // Implements the std::tuple class.
+#include <climits>  // Implements INT_MIN.
 #include <iomanip>  // Implements std::setw (for SqIntMatrix::display_matrix()).
 
 class SqIntMatrix;  // Stands for "square integer matrix". Class declaration.
