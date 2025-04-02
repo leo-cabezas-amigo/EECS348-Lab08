@@ -65,7 +65,7 @@ void test_SqIntMatrix(std::ifstream& file){
     std::cout << "\n";
 
     std::cout << "------------ SWAPPING ROWS OF B ------------\n";
-    std::size_t row1B = 0, row2B = 2;
+    std::size_t row1B = 1, row2B = 3;
     B.swap_rows(row1B, row2B);
     std::cout << "===> Swapped rows " << row1B << " and " << row2B << " of B.\n";
     std::cout << "B.array = \n";    // Prints B after row swapping to std::cout.
@@ -82,7 +82,7 @@ void test_SqIntMatrix(std::ifstream& file){
     std::cout << "\n";
     
     std::cout << "------------ SWAPPING COLUMNS OF B ------------\n";
-    std::size_t col1B = 0, col2B = 2;
+    std::size_t col1B = 0, col2B = 3;
     B.swap_columns(col1B, col2B);
     std::cout << "===> Swapped columns " << col1B << " and " << col2B << " of B.\n";
     std::cout << "B.array = \n";    // Prints B after column swapping to std::cout.
@@ -91,21 +91,21 @@ void test_SqIntMatrix(std::ifstream& file){
 
     std::cout << "================================= QUESTION 7 =================================\n";
     std::cout << "------------ UPDATING ELEMENTS OF A ------------\n";
-    std::size_t rowA = 0, colA = 1;
+    std::size_t rowA = 2, colA = 1;
     int new_elemA = 1633;
     std::cout << "A[" << rowA << "][" << colA << "] before updating = " << A.get_value(rowA, colA) << "\n";
     A.set_value(rowA, colA, new_elemA);
-    std::cout << "===> Updated value of A[" << rowA << "][" << colA << "] to = " << A.get_value(rowA, colA) << "\n",
+    std::cout << "===> Updated value of A[" << rowA << "][" << colA << "] to " << A.get_value(rowA, colA) << "\n",
     std::cout << "A.array = \n";    // Prints A after element updating to std::cout.
     A.display_matrix();
     std::cout << "\n";
 
     std::cout << "------------ UPDATING ELEMENTS OF B ------------\n";
-    std::size_t rowB = 0, colB = 1;
-    int new_elemB = 1488;
+    std::size_t rowB = 0, colB = 3;
+    int new_elemB = 1483;
     std::cout << "B[" << rowB << "][" << colB << "] before updating = " << B.get_value(rowB, colB) << "\n";
     B.set_value(rowB, colB, new_elemB);
-    std::cout << "===> Updated value of B[" << rowB << "][" << colB << "] to = " << B.get_value(rowB, colB) << "\n",
+    std::cout << "===> Updated value of B[" << rowB << "][" << colB << "] to " << B.get_value(rowB, colB) << "\n",
     std::cout << "B.array = \n";    // Prints B after element updating to std::cout.
     B.display_matrix();
     std::cout << "\n";
@@ -115,11 +115,20 @@ void test_SqIntMatrix(std::ifstream& file){
 int main(int argc, char** argv){
     std::ifstream file;
     if (argc > 1){  // If a filepath is specified (argv[1]).
-        file.open(argv[1]);
+        file.open(argv[1]);     // Opens file specified by runtime args.
+        if (!file.is_open()){
+            std::cerr << "Error in 'main()': Could not open specified file.\n";
+            return 1;
+        }
     } else {        // If no filepath is specified.
         file.open("Lab8_Test_File.txt");
+        if (!file.is_open()){
+            std::cerr << "Error in 'main()': Could not open default file 'Lab8_Test_File.txt'.\n";
+            return 1;
+        }
     }
 
     test_SqIntMatrix(file); // Displays the results of all methods of the SqIntMatrix class given the input text file.
+    file.close();           // Closes the file after data is read.
     return 0;
 }

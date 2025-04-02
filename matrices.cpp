@@ -135,8 +135,8 @@ int SqIntMatrix::main_diag_sum(){
 int SqIntMatrix::secondary_diag_sum(){
     int secondary_diag_sum = 0; // Initializes the result to 0.
     // Adds all secondary-diagonal elements of the matrix to main_diag_sum.
-    for (int i = 1; i < this->size - 1; i++){
-        secondary_diag_sum += this->array[i][i + 1];
+    for (int i = 0; i < this->size; i++){
+        secondary_diag_sum += this->array[this->size - 1 - i][i];
     }
     return secondary_diag_sum;  // Returns the secondary diagonal sum.
 }
